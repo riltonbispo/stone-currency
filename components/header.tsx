@@ -9,7 +9,9 @@ const Header = () => {
   const [dateState, setDateState] = useState(new Date())
 
   useEffect(() => {
-    setInterval(() => setDateState(new Date()), 30000)
+    const intervalId = setInterval(() => setDateState(new Date()), 30000)
+
+    return () => clearInterval(intervalId)
   }, [])
 
   return (
@@ -23,12 +25,12 @@ const Header = () => {
         ></Image>
         <div>
           <div>
-            <span>14 de janeiro de 2021 | </span>
+            <span>{dateState.toLocaleDateString('pt-BR')} | </span>
             <span>
-              {dateState.toLocaleString('en-US', {
+              {dateState.toLocaleString('pt-BR', {
                 hour: 'numeric',
                 minute: 'numeric',
-                hour12: true,
+                hour12: false,
               })}
             </span>
           </div>

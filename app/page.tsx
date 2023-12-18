@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { ArrowRightLeft, ArrowLeft, Loader2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -160,12 +160,12 @@ const Home = () => {
                 {isLoading ? (
                   <Button disabled>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Please wait
+                    Aguarde
                   </Button>
                 ) : (
                   <Button type="submit">
                     <ArrowRightLeft className="mr-2 h-4 w-4" />
-                    Submit
+                    Converter
                   </Button>
                 )}
               </form>
