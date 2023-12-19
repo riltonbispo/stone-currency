@@ -1,12 +1,11 @@
+import { currencyType } from '@/types/currencyType'
 import axios from 'axios'
 
-export const getCurrency = async () => {
-  try {
-    const response = await axios.get(
-      'https://economia.awesomeapi.com.br/last/USD',
-    )
-    return response.data.USDBRL
-  } catch (error) {
-    return error
-  }
+const req = axios.create({
+  baseURL: 'https://economia.awesomeapi.com.br/last',
+})
+
+export const getCurrency = async (): Promise<currencyType> => {
+  const response = await req.get('/USD')
+  return response.data
 }
