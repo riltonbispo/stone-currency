@@ -1,8 +1,10 @@
+import { formType } from '@/types/formType'
+
 type props = {
   dolarInput: number
   stateTax: number
   dolarValue: number
-  type: 'cash' | 'card'
+  type: formType['type']
 }
 
 export const getTotalDollars = (data: props) => {

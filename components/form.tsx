@@ -19,7 +19,7 @@ type Props = {
   setShowResult: (e: boolean) => void
   setResultDolar: (e: string) => void
   setRate: (e: string) => void
-  setType: (e: 'cash' | 'card') => void
+  setType: (e: formType['type']) => void
 }
 
 const Form = ({ ...props }: Props) => {

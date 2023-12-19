@@ -2,10 +2,11 @@ import { ArrowLeft } from 'lucide-react'
 import React from 'react'
 import { Button } from './ui/button'
 import { useConvert } from '@/hooks/useConvert'
+import { formType } from '@/types/formType'
 
 type Props = {
   resultDolar: string
-  type: 'cash' | 'card'
+  type: formType['type']
   rate: string
   setShowResult: (e: boolean) => void
 }
