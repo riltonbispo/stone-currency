@@ -1,4 +1,5 @@
 import { getCurrency } from '@/services/api'
+import { useFormStore } from '@/store/formStore'
 import { formType } from '@/types/formType'
 import { useQuery } from '@tanstack/react-query'
 
@@ -7,6 +8,8 @@ export const useConvert = () => {
     queryKey: ['dolarInfo'],
     queryFn: getCurrency,
   })
+
+  const formStore = useFormStore()
 
   const handleConvert = async (values: formType) => {
     const dolarInput = parseFloat(values.dolar)
@@ -29,7 +32,7 @@ export const useConvert = () => {
         ).toFixed(2)
       }
 
-      return resultDolarValue
+      formStore.setResultDolar(resultDolarValue)
     }
   }
 

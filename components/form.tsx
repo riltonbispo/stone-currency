@@ -13,27 +13,26 @@ import {
 import { Input } from '@/components/ui/input'
 import { useForm } from '@/hooks/useForm'
 import { formType } from '@/types/formType'
-import { useConvert } from '@/hooks/useConvert'
+import { useConvert } from '@/utils/convert'
+import { useFormStore } from '@/store/formStore'
 
 type Props = {
   setShowResult: (e: boolean) => void
-  setResultDolar: (e: string) => void
-  setRate: (e: string) => void
-  setType: (e: formType['type']) => void
 }
 
 const Form = ({ ...props }: Props) => {
   const { form } = useForm()
   const { isLoading, handleConvert } = useConvert()
 
+  const formStore = useFormStore()
+
   const handleSubmit = async (values: formType) => {
-    const dolar = await handleConvert(values)
-    if (dolar) {
-      props.setShowResult(true)
-      props.setResultDolar(dolar)
-      props.setType(values.type)
-      values.rate && props.setRate(values.rate)
-    }
+    formStore.setDolar(values.dolar)
+    formStore.setType(values.type)
+    values.rate && formStore.setRate(values.rate)
+
+    await handleConvert(values)
+    props.setShowResult(true)
   }
 
   return (
