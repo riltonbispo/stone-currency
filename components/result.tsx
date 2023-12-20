@@ -1,15 +1,11 @@
 import { ArrowLeft } from 'lucide-react'
 import React from 'react'
 import { Button } from './ui/button'
-import { useConvert } from '@/hooks/useConvert'
 import { useFormStore } from '@/store/formStore'
+import { useCurrencyData } from '@/utils/queries'
 
-type Props = {
-  setShowResult: (e: boolean) => void
-}
-
-const Result = ({ ...props }: Props) => {
-  const { data } = useConvert()
+const Result = () => {
+  const { data } = useCurrencyData()
   const formStore = useFormStore()
 
   return (
@@ -19,7 +15,7 @@ const Result = ({ ...props }: Props) => {
         className="mb-6"
         variant={'outline'}
         onClick={() => {
-          props.setShowResult(false)
+          formStore.setResultDolar('')
         }}
       >
         <ArrowLeft className="mr-2 h-4 w-4" />
