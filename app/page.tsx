@@ -7,14 +7,14 @@ import Result from '@/components/result'
 import { useFormStore } from '@/store/formStore'
 
 const Home = () => {
-  const form = useFormStore()
+  const resultDolar = useFormStore((state) => state.resultDolar)
 
   return (
     <div className="w-5/6 mx-auto max-w-4xl my-32 overflow-hidden px-4">
       <Header />
 
       <AnimatePresence>
-        {form.resultDolar.length < 1 ? (
+        {resultDolar.length < 1 ? (
           <motion.div>
             <Form />
           </motion.div>

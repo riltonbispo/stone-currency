@@ -6,7 +6,13 @@ import { useCurrencyData } from '@/utils/queries'
 
 const Result = () => {
   const { data } = useCurrencyData()
-  const formStore = useFormStore()
+
+  const [setResultDolar, resultDolar, type, rate] = useFormStore((state) => [
+    state.setResultDolar,
+    state.resultDolar,
+    state.type,
+    state.rate,
+  ])
 
   return (
     <>
@@ -15,7 +21,7 @@ const Result = () => {
         className="mb-6"
         variant={'outline'}
         onClick={() => {
-          formStore.setResultDolar('')
+          setResultDolar('')
         }}
       >
         <ArrowLeft className="mr-2 h-4 w-4" />
@@ -24,14 +30,13 @@ const Result = () => {
       <div className="flex flex-col gap-1">
         <p className="font-medium">Você precisará de:</p>
         <span className="font-semibold text-6xl text-emerald-500 mb-4">
-          R$ {formStore.resultDolar}
+          R$ {resultDolar}
         </span>
         <span className="text-sm text-muted-foreground">
           <span className="font-medium">
-            Compra no {formStore.type === 'card' ? 'cartão' : 'dinheiro'} e taxa
-            de
+            Compra no {type === 'card' ? 'cartão' : 'dinheiro'} e taxa de
           </span>{' '}
-          {formStore.rate}%
+          {rate || '0'}%
         </span>
         <span className="text-sm text-muted-foreground">
           <span className="font-medium">Cotação do dolar: </span>
